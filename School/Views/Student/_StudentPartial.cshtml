@@ -1,0 +1,46 @@
+﻿@model School.Models.ViewModels.StudentViewModel
+
+<form asp-action="Create" method="post">
+    <input asp-for="Name" class="form-control" placeholder="Student Name" />
+    <input asp-for="DOB" type="date" class="form-control" />
+    <input asp-for="Address" class="form-control" placeholder="Address" />
+
+    <select asp-for="ClassId" class="form-control" id="countryDropdown">
+        <option value="">Select Class</option>
+    </select>
+
+
+    <select asp-for="CountryId" class="form-control" id="countryDropdown">
+        <option value="">Select Country</option>
+    </select>
+
+    <select asp-for="StateId" class="form-control" id="stateDropdown">
+        <option value="">Select State</option>
+    </select>
+
+    <select asp-for="CityId" class="form-control" id="cityDropdown">
+        <option value="">Select City</option>
+    </select>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+<script>
+    $('#countryDropdown').change(function () {
+        $.get('/Student/GetStates?countryId=' + $(this).val(), function (data) {
+            $('#stateDropdown').html('<option value="">Select State</option>');
+            $.each(data, function (i, state) {
+                $('#stateDropdown').append('<option value="' + state.id + '">' + state.name + '</option>');
+            });
+        });
+    });
+
+    $('#stateDropdown').change(function () {
+        $.get('/Student/GetCities?stateId=' + $(this).val(), function (data) {
+            $('#cityDropdown').html('<option value="">Select City</option>');
+            $.each(data, function (i, city) {
+                $('#cityDropdown').append('<option value="' + city.id + '">' + city.name + '</option>');
+            });
+        });
+    });
+</script>
