@@ -1,6 +1,7 @@
-﻿@model School.Models.ViewModels.StudentViewModel
+﻿@model StudentViewModel
 
-<form asp-action="Create" method="post">
+<form asp-action="Create" asp-controller="Student" method="post">
+
     <input asp-for="Name" class="form-control" placeholder="Student Name" />
     <input asp-for="DOB" type="date" class="form-control" />
     <input asp-for="Address" class="form-control" placeholder="Address" />
@@ -10,7 +11,7 @@
     </select>
 
 
-    <select asp-for="CountryId" class="form-control" id="countryDropdown">
+    <select asp-for="CountryId" asp-items="Model.Countries" class="form-control" id="countryDropdown">
         <option value="">Select Country</option>
     </select>
 

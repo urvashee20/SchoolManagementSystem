@@ -4,6 +4,7 @@ using School.DataAccess.Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,6 +30,11 @@ namespace School.DataAccess.Repository
         {
             await _dbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<T>> GetByCondition(Expression<Func<T, bool>> predicate)
+        {
+            return _dbSet.Where(predicate);
         }
 
     }

@@ -9,12 +9,12 @@ namespace School.Models.ViewModels
         public DateTime DOB { get; set; }
         public string Address { get; set; }
         public int ClassId { get; set; }
-        public IEnumerable<SelectListItem> Classes { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> Classes { get; set; }
         public int CountryId { get; set; }
-        public IEnumerable<SelectListItem> Countries { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> Countries { get; set; }
         public int StateId { get; set; }
-        public IEnumerable<SelectListItem> States { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> States { get; set; }
         public int CityId { get; set; }
-        public IEnumerable<SelectListItem> Cities { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> Cities { get; set; }
     }
 }

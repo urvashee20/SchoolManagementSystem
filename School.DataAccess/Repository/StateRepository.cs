@@ -11,25 +11,22 @@ using System.Threading.Tasks;
 
 namespace School.DataAccess.Repository
 {
-    public class StudentRepository : Repository<Students>,IStudentRepository
+    public class StateRepository : Repository<State>, IStateRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public StudentRepository(ApplicationDbContext context) : base(context)
+        public StateRepository(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }
-
-        public async Task<IEnumerable<Students>> GetAllStudents()
+        public async Task<IEnumerable<State>> GetAll()
         {
-            return await _context.students.ToListAsync();
+            return await _context.states.ToListAsync();
         }
 
-       
-
-        
-
-        
-
+        public async Task<IEnumerable<State>> GetByCondition(Expression<Func<State, bool>> predicate)
+        {
+            return await _context.states.Where(predicate).ToListAsync();
+        }
     }
 }

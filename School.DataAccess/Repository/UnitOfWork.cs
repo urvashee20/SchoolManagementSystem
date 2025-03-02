@@ -23,6 +23,12 @@ namespace School.DataAccess.Repository
 
         public IStudentRepository Student { get; set; }
 
+        public ICountryRepository Country { get; set; }
+
+        public IStateRepository State { get; set; }
+
+        public ICityRepository Cities { get; set; }
+
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;

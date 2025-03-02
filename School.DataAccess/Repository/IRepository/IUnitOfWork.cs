@@ -18,5 +18,11 @@ namespace School.DataAccess.Repository.IRepository
         Task Save();
 
         IStudentRepository Student {  get; }
+
+        ICountryRepository Country { get; }
+
+        IStateRepository State { get; }
+
+        ICityRepository Cities { get; }
     }
 }

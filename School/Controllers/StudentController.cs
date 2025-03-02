@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using School.DataAccess.Repository;
 using School.DataAccess.Repository.IRepository;
 using School.Models;
 using School.Models.ViewModels;
@@ -25,10 +26,11 @@ namespace School.Controllers
 
         public async Task<IActionResult> Create()
         {
+           // var countries = await _unitOfWork.Country.GetAll();
             var model = new StudentViewModel
             {
                 Classes = (await _unitOfWork.Classes.GetAll()).Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.ClassName }).ToList(),
-                Countries = (await _unitOfWork.Countrys.GetAll()).Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name }).ToList(),
+                Countries = (await _unitOfWork.Country.GetAll()).Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name }).ToList(),
 
                  States = new List<SelectListItem>(),
                 Cities = new List<SelectListItem>()
@@ -61,15 +63,15 @@ namespace School.Controllers
         [HttpGet]
         public async Task<IActionResult> GetStates(int countryId)
         {
-            var states = await _unitOfWork.States.GetAll();
-            return Json(states.Where(s => s.CountryId == countryId));
+            var states = await _unitOfWork.State.GetByCondition(s => s.CountryId == countryId);
+            return Json(states.Select(s => new { s.Id, s.Name }));
         }
 
         [HttpGet]
         public async Task<IActionResult> GetCities(int stateId)
         {
-            var cities = await _unitOfWork.Citys.GetAll();
-            return Json(cities.Where(c => c.StateId == stateId));
+            var cities = await _unitOfWork.Cities.GetByCondition(c => c.StateId == stateId);
+            return Json(cities.Select(c => new { c.Id, c.Name }));
         }
 
     }
