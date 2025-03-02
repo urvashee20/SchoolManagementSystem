@@ -1,4 +1,4 @@
-﻿@model StudentViewModel
+﻿@model School.Models.ViewModels.StudentViewModel
 
 <form asp-action="Create" asp-controller="Student" method="post">
 
@@ -11,7 +11,7 @@
     </select>
 
 
-    <select asp-for="CountryId" asp-items="Model.Countries" class="form-control" id="countryDropdown">
+    <select asp-for="CountryId" asp-items="@(new SelectList(Model.Countries, "Id", "Name"))" class="form-control" id="countryDropdown">
         <option value="">Select Country</option>
     </select>
 

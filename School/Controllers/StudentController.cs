@@ -29,7 +29,7 @@ namespace School.Controllers
            // var countries = await _unitOfWork.Country.GetAll();
             var model = new StudentViewModel
             {
-                Classes = (await _unitOfWork.Classes.GetAll()).Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.ClassName }).ToList(),
+                //Classes = (await _unitOfWork.Classes.GetAll()).Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.ClassName }).ToList(),
                 Countries = (await _unitOfWork.Country.GetAll()).Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name }).ToList(),
 
                  States = new List<SelectListItem>(),
